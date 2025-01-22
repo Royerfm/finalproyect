@@ -1,0 +1,42 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Deploy to main branch (Change to work in two branches, QA and main)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3Beging
+
+      - name: Add EC2 host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H 35.174.116.50 >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          # Clean the folder in EC2
+          ssh -i private_key.pem ec2-user@35.174.116.50 "rm -rf ~/paginaweb && mkdir ~/paginaweb"
+          
+          # Copy the files to EC2 server
+          scp -i private_key.pem -r ./* ec2-user@35.174.116.50:~/paginaweb/
+          
+          # Kill the proces if this is job in 8080 port
+          ssh -i private_key.pem ec2-user@35.174.116.50 "sudo fuser -k 8080/tcp || true"
+
+      - name: Start HTTP server on EC2
+        run: |
+          # Using tmux to run the HTTP server in the background
+          ssh -i private_key.pem ec2-user@35.174.116.50 << 'EOF'
+            # Install tmux if it is not installed
+            if ! command -v tmux &> /dev/null; then
+              sudo yum install -y tmux
+            fi
+            # Start a new tmux session and run the HTTP server
+            tmux new-session -d -s web_server "cd ~/paginaweb && python3 -m http.server 8080"
+          EOF
