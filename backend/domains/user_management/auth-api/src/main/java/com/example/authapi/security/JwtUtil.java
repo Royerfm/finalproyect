@@ -20,6 +20,7 @@ public class JwtUtil {
 
     // Método para generar un token JWT
     public String generateToken(String email) {
+        System.out.println("SECRET KEY: " + secretKey); // 👀 Verifica la clave secreta
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         return JWT.create()
                 .withSubject(email)
@@ -37,12 +38,28 @@ public class JwtUtil {
     }
 
     // Método para validar un token JWT
+    // Método para validar un token JWT
     public boolean validateToken(String token) {
         try {
+            System.out.println("Token recibido: " + token);  // Verifica el token recibido
+
+            // Eliminar 'Bearer ' si está presente
+            if (token.startsWith("Bearer ")) {
+                token = token.replace("Bearer ", "");
+            }
+
+            // Intentar decodificar el token
             DecodedJWT decodedJWT = getClaims(token);
-            return decodedJWT.getExpiresAt().after(new Date());
+
+            // Verificar si el token ha expirado
+            boolean isValid = decodedJWT.getExpiresAt().after(new Date());
+            System.out.println("Token válido? " + isValid);
+
+            return isValid;
         } catch (Exception e) {
+            System.out.println("Error al validar el token: " + e.getMessage());
             return false;
         }
     }
+
 }

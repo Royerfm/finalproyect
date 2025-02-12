@@ -24,4 +24,9 @@ public class AuthService {
         }
         throw new RuntimeException("Credenciales inválidas");
     }
+
+    public boolean validateToken(String token) {
+        return jwtUtil.validateToken(token);
+    }
+
 }
