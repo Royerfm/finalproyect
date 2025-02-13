@@ -47,6 +47,21 @@ services:
     networks:
       - microservices-network
 
+  language-api:
+    image: language-api:latest
+    container_name: language-api-container
+    restart: always
+    depends_on:
+      - user-api
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://aurora-cluster-endpoint:3306/tu_base_datos
+      SPRING_DATASOURCE_USERNAME: tu_usuario
+      SPRING_DATASOURCE_PASSWORD: tu_contraseña
+    networks:
+      - microservices-network
+
   redis:
     image: redis:latest
     container_name: redis-container

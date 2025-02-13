@@ -2,22 +2,25 @@ package com.example.languageapi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf().disable()  // Desactivar CSRF si no lo necesitas
+                .cors(Customizer.withDefaults())
                 .authorizeRequests()
-                .antMatchers("/language/update").permitAll()  // Permitir acceso sin autenticación a /language/update
-                .anyRequest().authenticated()  // Requiere autenticación para el resto de los endpoints
+                .requestMatchers("/language/update").permitAll()
+                .anyRequest().authenticated()
                 .and()
-                .httpBasic();  // Usa autenticación básica para el ejemplo, o puedes usar JWT si lo prefieres
+                .csrf().disable()
+                .httpBasic();
+        return http.build();
     }
 }

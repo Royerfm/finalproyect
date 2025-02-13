@@ -42,7 +42,7 @@ public class UserService {
             user.setName(userDetails.getName());
             user.setEmail(userDetails.getEmail());
             // Encriptar la nueva contraseña si se proporciona
-            if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {
+            if (userDetails.getPassword() != null && !userDetails.getPassword().trim().isEmpty()) {
                 String encryptedPassword = passwordEncoder.encode(userDetails.getPassword());
                 user.setPassword(encryptedPassword);
             }
