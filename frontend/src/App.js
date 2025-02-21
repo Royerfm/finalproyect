@@ -4,8 +4,10 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import MyAccount from './pages/MyAccount';
-import RegisterDevice from './pages/RegisterDevice'; // Placeholder
-import Panic from './pages/Panic'; // Placeholder
+import RegisterDevice from './pages/RegisterDevice'; 
+import Panic from './pages/Panic'; 
+import DeviceHome from './pages/DeviceHome';
+import Streaming from './pages/Streaming'; //
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/myaccount" element={<MyAccount />} />
         <Route path="/registerdevice" element={<RegisterDevice />} />
         <Route path="/panic" element={<Panic />} />
+        <Route path="/device/:deviceId" element={<DeviceHome />} />
+        <Route path="/streaming" element={<Streaming />} />
       </Routes>
     </BrowserRouter>
   );

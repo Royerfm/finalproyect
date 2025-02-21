@@ -29,7 +29,7 @@ const Home = () => {
       });
 
     // Obtener los dispositivos vinculados al usuario (endpoint placeholder)
-    axios.get(`http://localhost:8080/devices?email=${email}`, {
+    axios.get(`http://localhost:8084/devices/user?email=${email}`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(response => {
@@ -67,8 +67,17 @@ const Home = () => {
   };
 
   const handlePanico = () => {
-    navigate('/panic'); // Placeholder para el microservicio de pánico
+    navigate('/panic'); 
   };
+
+  const handleDeviceClick = (deviceId) => {
+    if (!deviceId) {
+      console.error("Error: ID del dispositivo no válido.");
+      return;
+    }
+    navigate(`/device/${deviceId}`);
+  };
+  
 
   return (
     <div>
@@ -141,11 +150,39 @@ const Home = () => {
           {devices.length === 0 ? (
             <p>No existen dispositivos</p>
           ) : (
-            <ul>
-              {devices.map(device => (
-                <li key={device.id}>{device.name}</li>
+            <div style={{ display: 'grid', gap: '10px' }}>
+              {devices.map((device) => (
+                <div 
+                key={device.id || device.serial_number || device.ip_address}
+                onClick={() => {
+                  console.log("Dispositivo recibido:", device);
+                  console.log("Device ID enviado a navigate:", device.id);
+                  
+                  if (!device.id) {
+                    console.error("Error: ID del dispositivo no válido.");
+                    return;
+                  }
+              
+                  handleDeviceClick(device.id);
+                }}
+                style={{
+                  padding: '1rem',
+                  border: '1px solid #ccc',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  background: '#f9f9f9',
+                  transition: 'background 0.2s',
+                }}
+                onMouseOver={(e) => e.currentTarget.style.background = "#e0e0e0"}
+                onMouseOut={(e) => e.currentTarget.style.background = "#f9f9f9"}
+              >
+                <strong>{device.name_device || "Dispositivo sin nombre"}</strong>
+                <p>{device.ip_address}</p>
+              </div>
+              
+              
               ))}
-            </ul>
+            </div>
           )}
         </section>
 
