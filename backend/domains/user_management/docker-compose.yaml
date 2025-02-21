@@ -1,0 +1,76 @@
+version: "3.8"
+
+services:
+  user-api:
+    image: user-api:latest
+    container_name: user-api-container
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://aurora-cluster-endpoint:3306/tu_base_datos
+      SPRING_DATASOURCE_USERNAME: tu_usuario
+      SPRING_DATASOURCE_PASSWORD: tu_contraseña
+    networks:
+      - microservices-network
+
+  auth-api:
+    image: auth-api:latest
+    container_name: auth-api-container
+    restart: always
+    depends_on:
+      - user-api
+    ports:
+      - "8081:8081"
+    environment:
+      JWT_SECRET: "superclaveultrasecreta"
+    networks:
+      - microservices-network
+
+  session-api:
+    image: session-api:latest
+    container_name: session-api-container
+    restart: always
+    depends_on:
+      - auth-api
+      - mysql
+      - redis
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/session_db
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      JWT_SECRET: "superclaveultrasecreta"
+    networks:
+      - microservices-network
+
+  language-api:
+    image: language-api:latest
+    container_name: language-api-container
+    restart: always
+    depends_on:
+      - user-api
+    ports:
+      - "8083:8083"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://aurora-cluster-endpoint:3306/tu_base_datos
+      SPRING_DATASOURCE_USERNAME: tu_usuario
+      SPRING_DATASOURCE_PASSWORD: tu_contraseña
+    networks:
+      - microservices-network
+
+  redis:
+    image: redis:latest
+    container_name: redis-container
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - microservices-network
+
+networks:
+  microservices-network:
+    driver: bridge

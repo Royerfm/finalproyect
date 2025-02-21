@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2b7ea9ed-69b4-4c5b-8c52-6332b14f1902" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/channels-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/handlers/scan_handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/internal/scanner.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/controllers/device_controller.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/main/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/models/device.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../devices-crud/services/user_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/config/config.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/go.work" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/handlers/snapshot_handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/image-api.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/main/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../image-api/utils/ffmpeg_utils.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/main/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../url-rtsp-api/url-rtsp-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../devices-crud/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/../devices-crud/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../frontend/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../frontend/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../frontend/src/pages/RegisterDevice.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../frontend/src/pages/RegisterDevice.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2t0vEPiYvTiSQVlAKx2bhk8EgOu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build channels-api/cmd.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "test",
+    "go.import.settings.migrated": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="go build channels-api/cmd" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="channels-api" />
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="channels-api/cmd" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build channels-api/cmd" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b7ea9ed-69b4-4c5b-8c52-6332b14f1902" name="Changes" comment="" />
+      <created>1739501695223</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739501695223</updated>
+      <workItem from="1739501696266" duration="11086000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

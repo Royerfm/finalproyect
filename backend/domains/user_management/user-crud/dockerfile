@@ -1,0 +1,14 @@
+# OpenJDK 17 base image
+FROM openjdk:17-jdk-slim
+
+# Working directory inside the container
+WORKDIR /app
+
+# Copy the microservice JAR file to the container
+COPY target/UserAPI-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose the application port (by default, Spring Boot uses 8080)
+EXPOSE 8080
+
+# Command to run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]

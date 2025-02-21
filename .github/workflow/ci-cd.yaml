@@ -3,40 +3,84 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # Deploy to main branch (Change to work in two branches, QA and main)
+      - test  # Automatically deploy when pushing to the test branch
+  pull_request:
+    branches:
+      - main  
 
 jobs:
-  deploy:
+  deploy-to-qa:
+    if: github.ref == 'refs/heads/test'  # Only run if it is the test branch
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3Beging
+        uses: actions/checkout@v3
+
+      - name: Configure SSH
+        run: |
+          echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
 
       - name: Add EC2 host to known_hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H 35.174.116.50 >> ~/.ssh/known_hosts
 
-      - name: Deploy to EC2
+      - name: Deploy to EC2 (QA)
         run: |
-          # Clean the folder in EC2
+          # Clean up the folder in EC2
           ssh -i private_key.pem ec2-user@35.174.116.50 "rm -rf ~/paginaweb && mkdir ~/paginaweb"
           
-          # Copy the files to EC2 server
+          # Copy the files to the EC2 server
           scp -i private_key.pem -r ./* ec2-user@35.174.116.50:~/paginaweb/
           
-          # Kill the proces if this is job in 8080 port
+          # Kill the process if it is already using port 8080
           ssh -i private_key.pem ec2-user@35.174.116.50 "sudo fuser -k 8080/tcp || true"
 
-      - name: Start HTTP server on EC2
+      - name: Start HTTP server on EC2 (QA)
         run: |
-          # Using tmux to run the HTTP server in the background
           ssh -i private_key.pem ec2-user@35.174.116.50 << 'EOF'
-            # Install tmux if it is not installed
             if ! command -v tmux &> /dev/null; then
               sudo yum install -y tmux
             fi
-            # Start a new tmux session and run the HTTP server
+            tmux new-session -d -s web_server "cd ~/paginaweb && python3 -m http.server 8080"
+          EOF
+
+  deploy-to-prod:
+    if: github.event_name == 'pull_request' && github.event.pull_request.merged == true  # Solo ejecuta si el PR a main es aprobado
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure SSH
+        run: |
+          echo "${{ secrets.EC2_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
+
+      - name: Add EC2 host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H 35.174.116.50 >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2 (Production)
+        run: |
+          # Clean up the folder in EC2
+          ssh -i private_key.pem ec2-user@35.174.116.50 "rm -rf ~/paginaweb && mkdir ~/paginaweb"
+          
+          # Copy the files to the EC2 server
+          scp -i private_key.pem -r ./* ec2-user@35.174.116.50:~/paginaweb/
+          
+          # Kill the process if it is already using port 8080
+          ssh -i private_key.pem ec2-user@35.174.116.50 "sudo fuser -k 8080/tcp || true"
+
+      - name: Start HTTP server on EC2 (Production)
+        run: |
+          ssh -i private_key.pem ec2-user@35.174.116.50 << 'EOF'
+            if ! command -v tmux &> /dev/null; then
+              sudo yum install -y tmux
+            fi
             tmux new-session -d -s web_server "cd ~/paginaweb && python3 -m http.server 8080"
           EOF
